@@ -1,3 +1,6 @@
+let arr = Array.from({length: 20}, () => Math.floor(Math.random() * 99));
+console.log(arr);
+
 function swap(arr, i, j){
 	let tmp = arr[i];
 	arr[i] = arr[j];
@@ -5,43 +8,39 @@ function swap(arr, i, j){
 }
 
 function get_pos(left, right){
-	if ((right-left) <= 0) return;
+	if (left > right) return;
 	// pick pivot value
 	let pivot_in = left;
-	left = left + 1;
+	let i = left;
+	let j = right;
 	
-	while(left < right){
-		for (let i=left; i<arr.length; i++){
-			if (arr[i] >= arr[pivot_in]){
-				left = i; 
-				break;
-			}
-			left = i;
+	while(i <= j){
+		
+		while (arr[i] <= arr[pivot_in] && i <= right){
+			i++;
 		}
 		
-		for (let j=right; j>0; j--){
-			if (arr[j] <= arr[pivot_in]){
-				right = j;
-				break;
-			}
-			right = j;
+		while (arr[j] > arr[pivot_in] && j >= left){
+			j--;
 		}
 		
-		swap(arr, left, right);
+		if (i <= j){
+			swap(arr, i, j);
+		}
+	}
+	if (arr[i] < arr[j]) swap(arr, i, j);
+	
+	if (arr[i] < arr[pivot_in]){
+		swap(arr, pivot_in, i);
+		return i;
 	}
 	
-	if (arr[left] < arr[right]){
-		swap(arr, left, right);
-	}
-	
-	if (arr[pivot_in] > arr[right]){
-		swap(arr, pivot_in, right);
-	}
-	return right;
+	swap(arr, pivot_in, j);
+	return j;
 }
 
 function quick_sort(l, r){
-	if ((r-l) <= 0) return;
+	if (l > r) return;
 	
 	let left = l;
 	let right = r;
@@ -51,8 +50,5 @@ function quick_sort(l, r){
 	quick_sort(pos+1, right);
 }
 
-
-//let arr = Array.from({length: 20}, () => Math.floor(Math.random() * 20));
-let arr = [14,33,10,25,46,17,27,35,10,50,14,33,10,25,46,17,27,35,10,50];
-quick_sort(0, arr.length);
+quick_sort(0, arr.length-1);
 console.log(arr);
