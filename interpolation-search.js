@@ -21,5 +21,5 @@ function interpolation_search(arr, x){
 	}
 }
 
-let arr_dist = Array.from({length: 20}, () => Math.floor(Math.random() * 99));
+let arr_dist = [10,14,19,26,27,31,33,35,42,50];
 interpolation_search(arr_dist, 33);

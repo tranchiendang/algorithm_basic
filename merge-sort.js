@@ -51,6 +51,6 @@ function merge_sort(arr){
 	return merge(l, r);
 }
 
-let arr_dist = Array.from({length: 20}, () => Math.floor(Math.random() * 99));
+let arr_dist = Array.from({length: 100}, () => Math.floor(Math.random() * 999));
 console.log(`unsorted arr: ${arr_dist}`);
 console.log(merge_sort(arr_dist));
