@@ -17,5 +17,5 @@ function bubble_sort(arr){
 	console.log(arr);
 }
 
-let arr_dist = [14,33,10,25,46,17,27,35,10,50];
+let arr_dist = Array.from({length: 20}, () => Math.floor(Math.random() * 99));
 bubble_sort(arr_dist);
